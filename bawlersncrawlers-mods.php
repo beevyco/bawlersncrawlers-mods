@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Plugin Name: Bawlers N Crawlers Site Mods
- * Plugin URI:  https://bawlersncrawlers.com
- * Description: Custom code for the Bwelers N Crawlers site
+ * Plugin Name: Beevy.co Store Plugin
+ * Plugin URI:  https://beevy.co
+ * Description: Code that powers Beevy.co
  * Version:     0.5
- * Author:      Filament Studios
- * Author URI:  https://filament-studios.com
+ * Author:      Beevy.co
+ * Author URI:  https://beevy.co
  * License:     GPL-2.0+
  */
 
@@ -63,7 +63,7 @@ class BNC_Mods {
 
 	private function hooks_and_filters() {
 		add_action( 'widgets_init', array( $this, 'widgets' ) );
-		add_action( 'wp', array( $this, 'remove_hooks' ) );
+		add_action( 'init', array( $this, 'remove_hooks' ) );
 
 		add_action( 'woocommerce_cart_calculate_fees',array( $this, 'add_paypal_fees_to_cart' ), 999 );
 		//add_filter( 'woocommerce_product_is_visible', array( $this, 'show_backorders' ), 10, 2 );
@@ -105,6 +105,8 @@ class BNC_Mods {
 			remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
 			remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
 		}
+
+		remove_action( 'welcome_panel', 'wp_welcome_panel' );
 	}
 
 	/**
